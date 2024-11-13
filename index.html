@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HAPPY BIRTDAY PU-CHAN</title>
-    <link rel="stylesheet" href="style.css"> <!-- Liên kết đến CSS đã biên dịch -->
+    <title>HAPPY BIRTHDAY PU-CHAN</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="night">
@@ -12,29 +12,41 @@
   </div>
 
   <script>
-    // JavaScript để tạo 20 sao bắn ở các vị trí ngẫu nhiên
     const night = document.querySelector('.night');
+    let starCount = 1; // Số lượng sao ban đầu
 
-    for (let i = 0; i < 50; i++) {
-      // Tạo một phần tử sao bắn
+    // Hàm tạo sao bắn
+    function createShootingStar() {
       const shootingStar = document.createElement('div');
       shootingStar.classList.add('shooting_star');
       
       // Tạo vị trí ngẫu nhiên cho mỗi sao bắn
-      const randomTop = Math.random() * 100; // Tạo vị trí top ngẫu nhiên (0% đến 100%)
-      const randomLeft = Math.random() * 100; // Tạo vị trí left ngẫu nhiên (0% đến 100%)
-
+      const randomTop = Math.random() * 100; // Vị trí top ngẫu nhiên (0% đến 100%)
+      const randomLeft = Math.random() * 100; // Vị trí left ngẫu nhiên (0% đến 100%)
+      
       // Cập nhật vị trí của sao bắn
       shootingStar.style.top = `${randomTop}%`;
       shootingStar.style.left = `${randomLeft}%`;
-
-      // Thêm sao bắn vào trong .night
-      night.appendChild(shootingStar);
       
       // Thiết lập các kiểu delay ngẫu nhiên cho mỗi sao bắn
       const delay = Math.random() * 10000; // Thời gian delay ngẫu nhiên
       shootingStar.style.animationDelay = `${delay}ms`;
+
+      // Thêm sao bắn vào trong .night
+      night.appendChild(shootingStar);
     }
+
+    // Tăng số lượng sao bắn dần lên
+    function increaseStars() {
+      if (starCount <= 1411) {
+        createShootingStar();
+        starCount++;
+        setTimeout(increaseStars, 500); // Mỗi 500ms tạo 1 sao bắn thêm
+      }
+    }
+
+    // Bắt đầu tạo sao bắn
+    increaseStars();
   </script>
 </body>
 </html>
